@@ -30,8 +30,8 @@ static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
 static const Rule rules[] = {
 	/* xprop(1):
-	 *	WM_CLASS(STRING) = instance, class
-	 *	WM_NAME(STRING) = title
+	 * WM_CLASS(STRING) = instance, class
+	 * WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
@@ -75,8 +75,19 @@ static Key keys[] = {
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
 	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
-	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
-	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
+	{ MODKEY,                       XK_h,      switchcol,      {0} },
+	{ MODKEY,                       XK_l,      switchcol,      {0} },
+	{ MODKEY,                       XK_n,      setmfact,       {.f = -0.05} },
+	{ MODKEY,                       XK_period, setmfact,       {.f = +0.05} },
+	/*{ MODKEY,                       XK_n,      moveresize,     {.v = (int []){ -25, 0, 0, 0 }}},
+	{ MODKEY,                       XK_m,      moveresize,     {.v = (int []){ 0, 25, 0, 0 }}},
+	{ MODKEY,                       XK_comma,  moveresize,     {.v = (int []){ 0, 25, 0, 0 }}},
+	{ MODKEY,                       XK_period, moveresize,     {.v = (int []){ 25, 0, 0, 0 }}},
+	{ MODKEY|ShiftMask,             XK_h,      moveresize,     {.v = (int []){ 0, 0, -25, 0 }}},
+	{ MODKEY|ShiftMask,             XK_j,      moveresize,     {.v = (int []){ 0, 0, 0, -25 }}},
+	{ MODKEY|ShiftMask,             XK_k,      moveresize,     {.v = (int []){ 0, 0, 0, 25 }}},
+	{ MODKEY|ShiftMask,             XK_l,      moveresize,     {.v = (int []){ 0, 0, 25, 0 }}},
+	*/
 	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
@@ -101,7 +112,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
-	{ MODKEY|ControlMask|ShiftMask, XK_q,      quit,           {1} }, 
+	{ MODKEY|ControlMask|ShiftMask, XK_q,      quit,           {1} },
 };
 
 /* button definitions */
