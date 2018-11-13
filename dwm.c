@@ -1311,13 +1311,13 @@ resizeclient(Client *c, int x, int y, int w, int h)
 		gapincr = gapoffset = 0;
 	} else {
 		/* Remove border and gap if layout is monocle or only one client */
-		if (selmon->lt[selmon->sellt]->arrange == monocle || n == 1) {
+		if (selmon->lt[selmon->sellt]->arrange == monocle ) {
 			gapoffset = 0;
 			gapincr = -2 * borderpx;
 			wc.border_width = 0;
 		} else {
 			gapoffset = gappx;
-			gapincr = 2 * gappx;
+			gapincr =  2 * gappx;
 		}
 	}
 
@@ -1771,7 +1771,7 @@ tile(Monitor *m)
 		return;
 
 	if (n > m->nmaster)
-		mw = m->nmaster ? m->ww * m->mfact : 0;
+		mw = m->nmaster ? m->ww * m->mfact: 0;
 	else
 		mw = m->ww;
 	for (i = my = ty = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), i++)
@@ -1781,7 +1781,7 @@ tile(Monitor *m)
 			my += HEIGHT(c);
 		} else {
 			h = (m->wh - ty) / (n - i);
-			resize(c, m->wx + mw, m->wy + ty, m->ww - mw - (2*c->bw), h - (2*c->bw), 0);
+			resize(c, m->wx + mw - gappx, m->wy + ty, m->ww - mw - (2*c->bw) + gappx , h - (2*c->bw), 0);
 			ty += HEIGHT(c);
 		}
 }
