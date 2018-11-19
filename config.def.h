@@ -5,8 +5,8 @@ static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=10" };
-static const char dmenufont[]       = "monospace:size=10";
+static const char *fonts[]          = { "SauceCodePro Nerd Font:size=12" };
+static const char dmenufont[]       = "SauceCodePro Nerd Font:size=12";
 
 static const char base03[]          = "#002b36";
 static const char base02[]          = "#073642";
@@ -25,12 +25,20 @@ static const char blue[]            = "#268bd2";
 static const char cyan[]            = "#2aa198";
 static const char green[]           = "#859900";
 static const int gappx = 14;
-static const char *colors[][3]      = {
+static const char *colors[][12]      = {
 	                /* fg         bg          border   */
-	[SchemeNorm]   = { base00,    base03,     base02},
-	[SchemeSel]    = { base0,     base03,     blue  },
-	[SchemeWarn]   = { base00,    base03,     red   },
-	[SchemeUrgent] = { base00,    base03,     red   },
+	[SchemeNormDark]    = { base1,    base03,     base02},
+	[SchemeSelDark]     = { blue,     base03,     blue  },
+	[SchemeGoodDark]    = { green,    base03,     green },
+	[SchemeOkDark]      = { yellow,   base03,     yellow},
+	[SchemeWarnDark]    = { orange,   base03,     orange},
+	[SchemeUrgentDark]  = { red,      base03,     red   },
+	[SchemeNormLight]   = { base01,   base3,      base2 },
+	[SchemeSelLight]    = { blue,     base3,      blue  },
+	[SchemeGoodLight]   = { green,    base3,      green },
+	[SchemeOkLight]     = { yellow,   base3,      yellow},
+	[SchemeWarnLight]   = { orange,   base3,      orange},
+	[SchemeUrgentLight] = { red,      base3,      red   },
 };
 
 /* tagging */
@@ -98,9 +106,10 @@ static Key keys[] = {
 	*/
 	{ MODKEY|ShiftMask,             XK_h,      zoom,           {0} },
 	{ MODKEY|ShiftMask,             XK_l,      zoom,           {0} },
-	{ MODKEY,                       XK_Tab,    view,           {0} },
+	{ MODKEY,                       XK_Tab,    viewnext,       {0} },
+	{ MODKEY,                       XK_t,      togglecolors,   {0} },
 	{ MODKEY|ShiftMask,             XK_q,      killclient,     {0} },
-	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
+	{ MODKEY|ShiftMask,             XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
