@@ -748,10 +748,22 @@ drawbar(Monitor *m)
 	char ctmp;
 	Client *c;
 
+	/* remove special chars from string zo calculate width */
+	int tlength = strlen(stext);
+	char *tnocolors = malloc(tlength + 1);
+	for(int i = 0; i < tlength; i++) {
+		while(*ts > 0 && *ts < 32)
+			ts++;
+		tnocolors[i] = *ts;
+		if(*ts == 0)
+			break;
+		ts++;
+	}
+	ts = stext;
 	/* draw status first so it can be overdrawn by tags later */
 	if (m == selmon) { /* status is only drawn on selected monitor */
 		drw_setscheme(drw, scheme[darkmode ? SchemeNormDark : SchemeNormLight]);
-		sw = TEXTW(stext) - lrpad + 2; /* 2px right padding */
+		sw = TEXTW(tnocolors) - lrpad + 2; /* 2px right padding */
 		while (1) {
 			if ((unsigned int)*ts > LENGTH(colors)) { ts++; continue ; }
 			ctmp = *ts;
